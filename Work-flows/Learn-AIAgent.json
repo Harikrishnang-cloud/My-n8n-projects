@@ -1,0 +1,190 @@
+{
+  "name": "Learn-AIAgent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -880,
+        -112
+      ],
+      "id": "376bf1f1-77e4-4330-94e3-918f794929ab",
+      "name": "When chat message received",
+      "webhookId": "bf19e151-18e2-40c8-bd79-4ce1018bd6bb"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -608,
+        -112
+      ],
+      "id": "d7e973f5-6e4c-4e16-a659-c5ddf5903a00",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        -704,
+        96
+      ],
+      "id": "bcc31e25-7c86-4808-8c90-c215f73aabc1",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "OHxISFtqtIZrVS2U",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -544,
+        96
+      ],
+      "id": "98b8f955-ee8e-4021-abcf-957f8fa8e038",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        -384,
+        96
+      ],
+      "id": "a4bd74af-2b8c-49fb-a5f8-424ac6602ea7",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "url": "https://jsonplaceholder.typicode.com/posts/1",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.4,
+      "position": [
+        -224,
+        80
+      ],
+      "id": "16acaea5-0114-458e-8f42-c70dc6b413ef",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "query": "=Let AI fill this parameter",
+        "options": {}
+      },
+      "type": "@tavily/n8n-nodes-tavily.tavilyTool",
+      "typeVersion": 1,
+      "position": [
+        -464,
+        256
+      ],
+      "id": "9ecb6aba-ef86-4f39-965b-36ae5a09ed73",
+      "name": "Search in Tavily",
+      "credentials": {
+        "tavilyApi": {
+          "id": "xTNMQ8T5UutFUOfH",
+          "name": "Tavily account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search in Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "3e22873a-4bde-4fea-87de-ad80786757ff",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2b024ff1964714c8f47240a12d48c151938473e1d1a3c0436993d34e97fe69ac"
+  },
+  "nodeGroups": [],
+  "id": "T4ZnJFCoPh8pf2wy",
+  "tags": []
+}
