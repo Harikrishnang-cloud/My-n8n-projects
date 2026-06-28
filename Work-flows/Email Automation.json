@@ -1,0 +1,413 @@
+{
+  "name": "Email Automation",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1616,
+        -976
+      ],
+      "id": "a971a531-e07f-4ec7-ad4c-5b861bf1116a",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1QTqyIds_0szsZ_h2t6RQjwkkXhqU4eSLM0ZbZNDQTGU",
+          "mode": "list",
+          "cachedResultName": "School Database ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QTqyIds_0szsZ_h2t6RQjwkkXhqU4eSLM0ZbZNDQTGU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1457419775,
+          "mode": "list",
+          "cachedResultName": "Malappuram",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QTqyIds_0szsZ_h2t6RQjwkkXhqU4eSLM0ZbZNDQTGU/edit#gid=1457419775"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -1328,
+        -672
+      ],
+      "id": "7e6d2126-2e6f-4201-abf9-f0a5b6367c58",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mnDuIbO7SpjXWrqw",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1088,
+        -672
+      ],
+      "id": "8fd0ba20-7ff6-438f-a79a-bab7bf44ebf0",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/*.pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -560,
+        -656
+      ],
+      "id": "bb42a812-480b-4514-9e71-e0ca37ac8b77",
+      "name": "Read/Write Files from Disk"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{$node[\"Edit Fields\"].json[\"Email\"]}}",
+        "subject": "Invitation to Webinar on Soccer Drone Sports and FPV Drone Sports",
+        "message": "=<p><strong>Respected Sir/Madam,</strong></p>\n\n<p>Greetings from <strong>Asia Softlab Pvt. Ltd.</strong></p>\n\n<p>\nWe are pleased to invite <strong>{{$json.Name}}</strong> to a\n<strong>One-hour Webinar on \"Soccer Drone Sports and FPV Drone Sports\"</strong>\nfor the students and the teachers. The session aims to introduce participants to emerging Drone sports and skill development in aerospace design and development.\n</p>\n\n<p><strong>Key Highlights:</strong></p>\n\n<ul>\n    <li>Introduction to Drone Sports</li>\n    <li>Aerospace Design and Development skills Through Drone Sports</li>\n    <li>Innovation, Teamwork, and Problem-Solving Skills</li>\n    <li>Preparing for Drone Sports competitions etc.</li>\n</ul>\n\n<p><strong>Presentation Details:</strong></p>\n\n<ul>\n    <li><strong>Duration:</strong> 1 Hour</li>\n    <li><strong>Mode:</strong> Online</li>\n    <li><strong>Participation Fee:</strong> Free</li>\n    <li><strong>Participants:</strong> Teachers and Students (From 6th Standard to 12th Standard)</li>\n</ul>\n\n<p>\nWe would be honored to conduct this session for your institution at a mutually convenient date and time. We look forward to your positive response.\n</p>\n\n<p>Thank you for your consideration.</p>\n\n<p>\nYours Sincerely,<br><br>\n\n<strong>HRISHIKESH R</strong><br>\nManager - Skill Program<br> <strong>ASIA SOFTLAB Pvt. Ltd.</strong><br>\nPh: +91 7012147575<br>\nEmail: [hrishikesh@asiasoftlab.in](mailto:hrishikesh@asiasoftlab.in)\n\n</p>\n\n\n</body>\n</html>",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {
+                "property": "file0"
+              },
+              {
+                "property": "file1"
+              },
+              {
+                "property": "file2"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        -80,
+        -656
+      ],
+      "id": "7e285624-d8c6-452f-878a-ee72580b1bd5",
+      "name": "Send a message",
+      "webhookId": "60d5ec74-9fad-44d0-8a36-876b621b2263",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Lwm39bALg6QY7F0f",
+          "name": "Gmail account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1QTqyIds_0szsZ_h2t6RQjwkkXhqU4eSLM0ZbZNDQTGU",
+          "mode": "list",
+          "cachedResultName": "School Database ",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QTqyIds_0szsZ_h2t6RQjwkkXhqU4eSLM0ZbZNDQTGU/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1457419775,
+          "mode": "list",
+          "cachedResultName": "Malappuram",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1QTqyIds_0szsZ_h2t6RQjwkkXhqU4eSLM0ZbZNDQTGU/edit#gid=1457419775"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Sl No": "={{ $('Get row(s) in sheet').item.json['Sl No'] }}",
+            "School Name": "={{ $('Get row(s) in sheet').item.json['School Name'] }}",
+            "Email ID": "={{ $('Get row(s) in sheet').item.json['Email ID'] }}",
+            "Status": "\"Successfully Sent\""
+          },
+          "matchingColumns": [
+            "Sl No"
+          ],
+          "schema": [
+            {
+              "id": "Sl No",
+              "displayName": "Sl No",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "School Name",
+              "displayName": "School Name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Email ID",
+              "displayName": "Email ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        -992
+      ],
+      "id": "3a9d6f33-2bbc-4bea-8b19-ead878d9cf11",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "mnDuIbO7SpjXWrqw",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f22589ce-bef5-43e7-bfbb-a6afad04ff54",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "be265b28-bb75-4ecf-97c9-aa281f9a3a16",
+              "name": "School Name",
+              "value": "={{ $json['School Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "24dc3ea2-4021-4143-b2b8-9a53085845bf",
+              "name": "Email",
+              "value": "={{ $json['Email ID'] }}",
+              "type": "string"
+            },
+            {
+              "id": "126d92f6-3dcd-453d-aadb-3381b61b4bcd",
+              "name": "Status",
+              "value": "={{ $json.Status }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -800,
+        -656
+      ],
+      "id": "adadc5db-d75b-480f-b864-5785695f4387",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const edit = $('Edit Fields').item;\n\nconst output = {\n  json: {\n    Email: edit.json.Email,\n    Name: edit.json[\"School Name\"],\n    row_number: edit.json.row_number,\n    Status: edit.json.Status\n  },\n  binary: {}\n};\n\n$input.all().forEach((item, index) => {\n  output.binary[`file${index}`] = item.binary.data;\n});\n\nreturn [output];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -320,
+        -656
+      ],
+      "id": "3b2c4039-c0da-49c0-a254-9e4912ff0072",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "338ffe70-7858-4182-aa74-ab0c47f0a928",
+              "leftValue": "={{$json.Status}}",
+              "rightValue": "Email sent Successfully",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -752,
+        -1008
+      ],
+      "id": "0740b123-09e4-4825-9953-8efa707afe9c",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [],
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false,
+    "timeSavedMode": "fixed",
+    "saveExecutionProgress": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "versionId": "1bf59cd7-6ea5-4de3-aa42-bfbd13c51ef5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2b024ff1964714c8f47240a12d48c151938473e1d1a3c0436993d34e97fe69ac"
+  },
+  "nodeGroups": [],
+  "id": "2S7EHR5NADnyDTK8",
+  "tags": []
+}
